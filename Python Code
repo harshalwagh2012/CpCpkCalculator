@@ -1,0 +1,22 @@
+import numpy as np
+
+# Sample measurements from the robotic arm
+data = [49.7, 49.9, 50.0, 50.1, 49.8, 50.2, 50.0, 50.1, 49.8, 50.2, 49.9, 50.0]
+
+# Specification limits
+USL = 50.5  # Upper Spec Limit
+LSL = 49.5  # Lower Spec Limit
+
+# Process statistics
+mean = np.mean(data)
+std_dev = np.std(data, ddof=1)  # sample standard deviation
+
+# Cp and Cpk calculations
+Cp = (USL - LSL) / (6 * std_dev)
+Cpk = min((USL - mean) / (3 * std_dev), (mean - LSL) / (3 * std_dev))
+
+# Output
+print(f"Mean: {mean:.3f}")
+print(f"Standard Deviation: {std_dev:.3f}")
+print(f"Cp: {Cp:.3f}")
+print(f"Cpk: {Cpk:.3f}")
